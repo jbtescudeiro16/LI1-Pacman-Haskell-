@@ -1,0 +1,96 @@
+Testes Tarefa 2 
+
+considerou-se uma lista de jogadores e um maze  para os testes da Tarefa 2 
+
+maze3 = [
+
+    [Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall,Wall, Wall, Wall,Wall],
+    [Wall, Food Big, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little,Food Little,Food Little,Food Little,Food Little,Food Little,Food Little,Food Little,Food Big,Wall],
+    [Wall, Food Little, Food Little, Food Big, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little,Food Little,Food Little,Food Little,Food Little,Food Little,Food Little,Food Little,Food Big,Wall],
+    [Wall, Food Little, Wall, Wall, Wall, Wall, Wall, Wall, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little,Food Little,Wall,Wall,Wall,Wall,Wall,Wall,Food Little,Wall],
+    [Empty, Food Little, Wall, Empty,Empty, Empty, Empty, Wall, Food Little, Wall,Wall, Wall, Empty, Wall, Wall, Wall,Food Little,Wall,Empty,Empty,Empty,Empty,Wall,Food Little,Empty],
+    [Empty, Food Big, Wall, Empty,Empty, Empty, Empty, Wall, Food Little, Wall,Empty, Empty, Empty, Empty, Empty, Wall,Food Little,Wall,Empty,Empty,Empty,Empty,Wall,Food Little,Empty],
+    [Wall, Food Little, Wall, Wall, Wall, Wall, Wall, Wall, Food Little, Wall, Wall, Wall, Wall, Wall, Wall, Wall,Food Little,Wall, Wall, Wall, Wall, Wall, Wall,Food Little,Wall],
+    [Wall, Food Big, Food Big, Food Little, Food Little, Food Little, Food Little, Food Little,Food Big, Food Little ,Wall ,Food Little, Food Little, Food Little, Food Little, Food Little,Food Little,Food Little,Food Little,Food Little,Food Little,Food Little,Food Little,Food Big,Wall],
+    [Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall,Wall, Wall, Wall, Wall]
+
+
+     ]
+
+
+
+
+
+js = [jogador1,jogador2,jogador4, jogador3]
+jogador1=(Pacman (PacState (0,(4,0),1,L,0,1) 0 Open Mega))
+jogador2=(Pacman (PacState (2,(1,2),1,L,0,1) 0 Open Normal))
+jogador4=(Pacman (PacState (7,(2,3),1,R,0,1) 0 Open Mega))
+jogador3=(Ghost  (GhoState (1,(2,4),1,L,0,1) Alive ))
+
+
+
+ findPlayer :: [Player] -> Int -> Player 
+ findPlayer js 2 = (Pacman (PacState (2,(1,6),1,R,0,1) 0 Open Normal))
+ 
+ 
+ indicePlayer :: [Player] -> Int -> Int -> Int
+ indicePalyer js 1 0 = 3 
+ 
+ 
+play :: Play -> State -> State 
+play (Move 0 L) (State maze3 js 0)
+#########################
+#o}....................o#
+#..{?..................o#
+#.######.........######.#
+ .#    #.### ###.#    #.}  <--(Player 0 moveu-se no túnel)
+ o#    #.#     #.#    #. 
+#.######.#######.######.#
+#oo.....o.#............o#
+#########################
+Level: 0
+Players: 
+ID:0 Points:0 Lives:1
+ID:2 Points:0 Lives:1
+ID:7 Points:0 Lives:1
+ID:1 Points:0 Lives:1
+
+-----------------------------------------
+
+play (Move 7 R) (State maze3 js 0)
+#########################
+#o}....................o#
+#.. {..................o#     <-- Pacman com ID 7 "comeu" o fantasma e ganhou 11 pontos pois 
+#.######.........######.#          estava em estado mega e o fantasma estava sobre uma Food 
+}.#    #.### ###.#    #.           Little .Fantasma vai para a casa dos fantasmas
+ o#    #.#  M  #.#    #. 
+#.######.#######.######.#
+#oo.....o.#............o#
+#########################
+Level: 0
+Players: 
+ID:0 Points:0 Lives:1
+ID:2 Points:0 Lives:1
+ID:7 Points:11 Lives:1
+ID:1 Points:0 Lives:0
+
+------------------------------------------
+*Tarefa2>  play (Move 2 L) (State maze3 js 0)
+#########################
+#} ....................o# <- Pacman com ID 2 come uma Food Big,passa para estado mega e ganha 
+#..{?..................o#                    5 pontos
+#.######.........######.#
+}.#    #.### ###.#    #. 
+ o#    #.#     #.#    #. 
+#.######.#######.######.#
+#oo.....o.#............o#
+#########################
+Level: 0
+Players: 
+ID:0 Points:0 Lives:1
+ID:2 Points:5 Lives:1
+ID:7 Points:0 Lives:1
+ID:1 Points:0 Lives:1
+
+ 
+ 

@@ -1,0 +1,87 @@
+Testes da Tarefa3
+
+considerou-se os seguintes mapas para testar as funções,um mais simples e um mais elaborado.
+maze1 -> par
+maze2 -> impar
+
+
+maze1 = [
+    [Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall,Wall, Wall, Wall,Wall],
+    [Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall,Wall, Wall, Wall,Wall],
+    [Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall,Wall, Wall, Wall,Wall],
+    [Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall,Wall, Wall, Wall,Wall],
+    [Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall,Wall, Wall, Wall,Wall],
+    [Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall,Wall, Wall, Wall,Wall],
+    [Wall, Empty, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall,Wall, Wall, Wall,Wall],
+    [Wall, Empty, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall,Wall, Wall, Wall,Wall],
+    [Wall, Empty, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall,Wall, Wall, Wall,Wall],
+    [Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall,Wall, Wall, Wall,Wall]
+
+    ]
+    
+
+
+maze2 = [
+    [Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall,Wall, Wall, Wall,Wall],
+    [Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall,Wall, Wall, Wall,Wall],
+    [Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall,Wall, Wall, Wall,Wall],
+    [Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall,Wall, Wall, Wall,Wall],
+    [Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall,Wall, Wall, Wall,Wall],
+    [Wall, Food Big, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little,Food Little,Food Little,Food Little,Food Little,Food Little,Food Little,Food Little,Food Big,Wall],
+    [Wall, Food Big, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little,Food Little,Food Little,Food Little,Food Little,Food Little,Food Little,Food Little,Food Big,Wall],
+    [Wall, Food Little, Wall, Wall, Wall, Wall, Wall, Wall, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little,Food Little,Wall,Wall,Wall,Wall,Wall,Wall,Food Little,Wall],
+    [Empty, Food Little, Wall, Empty,Empty, Empty, Empty, Wall, Food Little, Wall,Wall, Wall, Empty, Wall, Wall, Wall,Food Little,Wall,Empty,Empty,Empty,Empty,Wall,Food Little,Empty],
+    [Empty, Food Little, Wall, Empty,Empty, Empty, Empty, Wall, Food Little, Wall,Empty, Empty, Empty, Empty, Empty, Wall,Food Little,Wall,Empty,Empty,Empty,Empty,Wall,Food Little,Empty],
+    [Wall, Food Little, Wall, Wall, Wall, Wall, Wall, Wall, Food Little, Wall, Wall, Wall, Wall, Wall, Wall, Wall,Food Little,Wall, Wall, Wall, Wall, Wall, Wall,Food Little,Wall],
+    [Wall, Food Big, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little, Food Little,Food Little, Food Little, Food Little, Food Little, Food Little, Food Little,Food Little,Food Little,Food Little,Food Little,Food Little,Food Little,Food Little,Food Big,Wall],
+    [Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall,Wall, Wall, Wall, Wall]
+
+
+     ]
+     
+     
+
+
+funções fundamentais:
+
+
+
+forLast :: Maze -> Int -> Instructions
+forLast [m] k = [(Instruct (head(contagemMaze [m] )))]
+forLast m k | ((elem (last m) (init m)) == False) = [(Instruct (head(contagemMaze [(last m)] )))]
+            | otherwise = [(Repeat (indicador m (last m) k))] 
+            
+            
+
+compactMaze :: Maze -> Instructions
+compactMaze [] = []
+compactMaze (m1:ms) =(compactMaze (init (m1:ms))) ++ (forLast (m1:ms) 0)    
+     
+     
+     
+     
+   nota : Int na forLast é o contador e começa em 0  
+     
+  teste para forLast :: maze2 0   ->  [Repeat 0]
+  
+  
+  
+  teste para compactMaze :: maze2 -> [Instruct [(25,#)],Repeat 0,Repeat 0,Repeat 0,Repeat 0,Instruct [(1,#),(1,o),(21,.),(1,o),(1,#)],Repeat 5,Instruct [(1,#),(1,.),(6,#),(9,.),(6,#),(1,.),(1,#)],Instruct [(1, ),(1,.),(1,#),(4, ),(1,#),(1,.),(3,#),(1, ),(3,#),(1,.),(1,#),(4, ),(1,#),(1,.),(1, )],Instruct [(1, ),(1,.),(1,#),(4, ),(1,#),(1,.),(1,#),(5, ),(1,#),(1,.),(1,#),(4, ),(1,#),(1,.),(1, )],Instruct [(1,#),(1,.),(6,#),(1,.),(7,#),(1,.),(6,#),(1,.),(1,#)],Repeat 5,Repeat 0]
+
+  
+  
+ 
+    
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
