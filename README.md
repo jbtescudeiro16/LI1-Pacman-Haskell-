@@ -1,4 +1,4 @@
-# LI1----Pacman-
+# LI1-Pacman-
 
 Trabalho relativo à cadeira de LI1 ano letivo (2020-2021)
 
